@@ -1,19 +1,21 @@
 import { notify, subscribe } from '../../app/observable/observer'
 import { Bag } from '../../app/bag/bag'
 import './shortBagStyle.scss'
+import { toPrice } from '../../utils/toPrice'
 
 const itemBagTemplate = (item) => {
-  const { id, title, price } = item
-  return `<li>
-  <p>${title}</p>
-  <p>${new Intl.NumberFormat('pt-BR', {
-    currency: 'BRL',
-    style: 'currency',
-  }).format(price)}</p>
+  const { id, title, price, quantity, amount } = item
+  return `<tr>
+  <td>${title}</td>
+  <td style="text-align:center">${quantity}</td>
+  <td style="text-align:center">${toPrice(price)}</td>
+  <td style="text-align:center">${toPrice(amount)}</td>
+  <td style="display:flex; justify-content:flex-end; align-items:center">
   <button type="button" data-id="${id}"><span class="material-symbols-outlined">
   close
   </span></button>
-</li>`
+  </td
+</tr>`
 }
 
 const shortBag = () => {
@@ -45,7 +47,6 @@ const shortBag = () => {
 
   const updateBag = (items) => {
     list.innerHTML = ''
-    console.log(items)
     if (items.size === 0) {
       list.innerHTML = '<li>Empty Bag</li>'
       return

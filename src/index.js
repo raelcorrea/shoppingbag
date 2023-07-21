@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const newShortBag = shortBag()
 
-  bagButton('.bagButton').addEventListener('click', (e) => {
+  bagButton().addEventListener('click', (e) => {
     newShortBag.classList.toggle('open')
   })
   //notify('addItemBag', items[0])
