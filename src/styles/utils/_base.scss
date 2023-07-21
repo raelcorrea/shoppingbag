@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+main {
+  width: 100%;
+}
+
+.hero {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
