@@ -29,8 +29,10 @@ const products = async () => {
   let bagCount = 0
   let lastProductId = 0
   subscribe('updateBag', (itemsMap) => {
-    const { quantity } = itemsMap.get(lastProductId)
-    bagCount = quantity
+    const itemBag = itemsMap.get(lastProductId)
+    if (itemBag) {
+      bagCount = itemBag.quantity
+    }
   })
 
   elem.querySelectorAll('li').forEach((li) => {
