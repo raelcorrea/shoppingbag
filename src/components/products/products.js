@@ -1,6 +1,6 @@
 import './products.style.scss'
 import productsservice from '../../service/productService'
-import { notify, subscribe, unsubscribe } from '../../app/observable/observer'
+import { notify, subscribe } from '../../app/observable/observer'
 import { toPrice } from '../../utils/toPrice'
 
 const itemProductTemplate = (product) => {
