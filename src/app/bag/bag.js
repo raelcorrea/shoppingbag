@@ -10,7 +10,7 @@ export class Bag {
   addItemBag(itemBag) {
     const { id, quantity, price } = itemBag
     const existingItem = this.itemsMap.get(id)
-
+    console.log('Bag:', itemBag)
     if (existingItem) {
       existingItem.quantity += quantity
       existingItem.amount = existingItem.price * existingItem.quantity

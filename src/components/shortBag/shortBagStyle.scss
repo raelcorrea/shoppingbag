@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 .shortBag {
   display: none;
   background-color: #000;
@@ -6,8 +7,8 @@
   position: absolute;
   z-index: 10;
   top: 100px;
-  right: 1rem;
-  min-width: 750px;
+  right: 0;
+  width: 100%;
   box-shadow: 1px 1px 2px #000;
   &.open {
     display: block;
@@ -70,5 +71,9 @@
       font-size: 0.875rem;
       cursor: pointer;
     }
+  }
+
+  @include tablet {
+    max-width: 750px;
   }
 }

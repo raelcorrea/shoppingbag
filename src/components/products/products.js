@@ -1,6 +1,6 @@
 import './products.style.scss'
 import productsservice from '../../service/productService'
-import { notify, subscribe } from '../../app/observable/observer'
+import { notify, subscribe, unsubscribe } from '../../app/observable/observer'
 import { toPrice } from '../../utils/toPrice'
 
 const itemProductTemplate = (product) => {
@@ -30,19 +30,32 @@ const products = async () => {
   let lastProductId = 0
   subscribe('updateBag', (itemsMap) => {
     const itemBag = itemsMap.get(lastProductId)
-    if (itemBag) {
+    if (itemBag !== undefined) {
       bagCount = itemBag.quantity
+      return
     }
+    bagCount = 0
+  })
+
+  subscribe('clearQuantityItemBag', (button) => {
+    const counterElem = button.querySelector('.bagCount')
+    const parentNodeElem = counterElem.parentNode
+    subscribe('removeItemBag', (id) => {
+      if (parentNodeElem.dataset.id === id) {
+        counterElem.innerHTML = ''
+      }
+    })
   })
 
   elem.querySelectorAll('li').forEach((li) => {
     const button = li.querySelector('button')
     button.addEventListener('click', (e) => {
-      const id = e.target.dataset.id
+      const id = button.dataset.id
       const product = productsService.getProductById(id)
       lastProductId = Number(id)
-      notify('addItemBag', product)
+      notify('addItemBag', product, e.target)
       button.querySelector('.bagCount').innerHTML = `(${bagCount})`
+      notify('clearQuantityItemBag', button)
     })
   })
 }

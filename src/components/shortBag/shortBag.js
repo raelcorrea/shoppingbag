@@ -4,11 +4,10 @@ import './shortBagStyle.scss'
 import { toPrice } from '../../utils/toPrice'
 
 const itemBagTemplate = (item) => {
-  const { id, title, price, quantity, amount } = item
+  const { id, title, quantity, amount } = item
   return `<tr>
   <td>${title}</td>
   <td style="text-align:center">${quantity}</td>
-  <td style="text-align:center">${toPrice(price)}</td>
   <td style="text-align:center">${toPrice(amount)}</td>
   <td style="display:flex; justify-content:flex-end; align-items:center">
   <button type="button" data-id="${id}"><span class="material-symbols-outlined">
@@ -28,12 +27,13 @@ const shortBag = () => {
     buttons.forEach((button) => {
       button.addEventListener('click', (e) => {
         const id = button.dataset.id
-        removeItemBag(id)
+        notify('removeItemBag', id)
       })
     })
   }
 
   const addItem = (item) => {
+    console.log('ShortBag: ', item)
     bag.addItemBag({ ...item, quantity: 1 })
     notify('updateBag', bag.itemsMap)
     notify('updateBagCount', bag.itemsMap.size)
@@ -41,6 +41,7 @@ const shortBag = () => {
 
   const removeItemBag = (id) => {
     bag.removeItemBag(Number(id))
+    console.log(bag.itemsMap, id)
     notify('updateBag', bag.itemsMap)
     notify('updateBagCount', bag.itemsMap.size)
   }
