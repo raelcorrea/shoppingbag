@@ -1,3 +1,7 @@
 # My Shopping Bag
 
-Criei uma aplicação de 'Shopping Bag' com o objetivo de estudar o Observer Pattern. Para isso, desenvolvemos um projeto utilizando o scaffolding do webpack. Para listar os produtos, utilizamos uma API pública dummy disponível em https://dummyjson.com/products. Essa aplicação tem como propósito aprimorar meu conhecimento sobre o padrão Observer e ao mesmo tempo me proporcionar a oportunidade de trabalhar com o webpack e integrar dados de uma API externa.
+A ideia deste projeto é aplicar meus conhecimento em relação ao Observer Pattern.
+
+No site aplico esta ideia na lista de itens na sacola, bem com nos contadores dos botões de adicionar a sacola, bem como o botão de bag na parte superior direta do site.
+
+**Botão Adicionar** - Quando clicamos no botão adicionar, ele notifica que adicionamos o produto em  questão na sacola, ao fazer isto todos os eventos inscrito serão executado, fazendo assim com que o contador do botão atualize, bem como contador da bag e a lista de produtos atualizada com a quantidade de valor total.
